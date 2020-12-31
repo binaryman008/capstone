@@ -15,14 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from ecomm.views import CategoryView, UserView, ProductView, ReviewView, OrderView, LineItemView
+from rest_framework.urlpatterns import format_suffix_patterns
+from ecomm.views import category_list, category_detail, product_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/categories', CategoryView.as_view()),
-    path('api/users', UserView.as_view()),
-    path('api/products', ProductView.as_view()),
-    path('api/review', ReviewView.as_view()),
-    path('api/orders', OrderView.as_view()),
-    path('api/lineitem', LineItemView.as_view()),
+    path('api/categories', category_list),
+    # path('api/users', UserView.as_view()),
+    path('api/products', product_list),
+    # path('api/review', ReviewView.as_view()),
+    # path('api/orders', OrderView.as_view()),
+    # path('api/lineitem', LineItemView.as_view()),
+    path('api/categories/<int:pk>/', category_detail),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)

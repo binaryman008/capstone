@@ -29,7 +29,7 @@ export const fetchProducts = () =>
 
 export const fetchCategoryThunk = (categoryId) =>
   dispatch =>
-    axios.get(`http://127.0.0.1:8000/api/categories${categoryId}`)
+    axios.get(`http://127.0.0.1:8000/api/categories/${categoryId}`)
       .then(res =>
         dispatch(getProducts(res.data || defaultProduct)))
       .catch(err => console.log(err))
