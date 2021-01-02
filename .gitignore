@@ -6,3 +6,6 @@ secrets.js
 npm-debug.log
 yarn-error.log
 products2
+server2/db.sqlite3
+server2/ecomm/__pycache__/__init__.cpython-38.pyc
+__pycache__
