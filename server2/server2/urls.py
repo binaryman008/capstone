@@ -27,6 +27,7 @@ urlpatterns = [
     # path('api/orders', OrderView.as_view()),
     # path('api/lineitem', LineItemView.as_view()),
     path('api/categories/<int:pk>/', category_detail),
+    path('accounts/', include('allauth.urls')), # new
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
