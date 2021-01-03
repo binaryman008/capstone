@@ -1,14 +1,10 @@
 from rest_framework import serializers
 from .models import Category, User, Product, Review, Order, LineItem
 
-# class CategorySerializer(serializers.ModelSerializer): 
-#     class Meta: 
-#         model = Category 
-#         fields = ['name', 'description', 'photo']
 
 class CategorySerializer(serializers.Serializer):
     """
-    It will create serialized data for the problem 2
+    It will create serialized data for Category Model
     """
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField()
@@ -17,7 +13,7 @@ class CategorySerializer(serializers.Serializer):
 
     def create(self, validated_data):
         """
-        Create and return a new `Snippet` instance, given the validated data.
+        Create and return a new Category instance, given the validated data.
         """
         return CompanyTable.objects.create(**validated_data)
 
@@ -63,16 +59,37 @@ class ProductSerializer(serializers.Serializer):
         return instance
 
 
-# class ProductSerializer(serializers.ModelSerializer):
+class ReviewSerializer(serializers.Serializer):
+    """
+    It will create serialized data for the problem 2
+    """
+    id = serializers.IntegerField(read_only=True)
+    title = serializers.CharField()
+    content = serializers.CharField()
+    rating = serializers.IntegerField()
+    productId = serializers.IntegerField()
+    userId = serializers.IntegerField()
+
+    def create(self, validated_data):
+        """
+        Create and return a new `Snippet` instance, given the validated data.
+        """
+        return CompanyTable.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.title = validated_data.get('title',instance.title)
+        instance.content = validated_data.get('content', instance.content)
+        instance.rating = validated_data.get('rating', instance.rating)
+        instance.productId = validated_data.get('productId', instance.productId)
+        instance.userId = validated_data.get('userId', instance.userId)
+        instance.save()
+        return instance
+
+
+# class ReviewSerializer(serializers.ModelSerializer):
 #     class Meta:
-#         model = Product
-#         fields = ['name', 'description', 'photo', 'rating', 'price', 'category']
-
-
-class ReviewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Review
-        fields = ['title', 'content', 'rating', 'product', 'user']
+#         model = Review
+#         fields = ['title', 'content', 'rating', 'product', 'user']
 
 
 class OrderSerializer(serializers.ModelSerializer):

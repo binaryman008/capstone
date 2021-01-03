@@ -16,17 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
-from ecomm.views import category_list, category_detail, product_list
+from ecomm.views import category_list, category_detail, product_list, review_product, review_detail, checkout_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/categories', category_list),
     # path('api/users', UserView.as_view()),
     path('api/products', product_list),
-    # path('api/review', ReviewView.as_view()),
+    path('api/reviews', review_product),
+    path('api/reviews/<int:pk>/', review_detail),
     # path('api/orders', OrderView.as_view()),
     # path('api/lineitem', LineItemView.as_view()),
     path('api/categories/<int:pk>/', category_detail),
+    path('api/orders', checkout_detail)
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
